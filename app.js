@@ -10,7 +10,7 @@ movie.use(express.json())
 movie.use(cors())
 
 movie.get("/",(req,res)=>{
-    res.send("Welcome")
+    res.send("Welcome here are some movie names for you")
 })
 
 movie.use('/api/movie',MovieRoute)
