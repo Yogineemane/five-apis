@@ -3,19 +3,21 @@ const express = require("express")
 const mongoose = require('mongoose')
 const cors = require("cors")
 const MovieRoute = require("./route/movieRoute")
+const SerialRoute = require("./route/serialRoute")
 
-const movie = express()
+const app = express()
 
-movie.use(express.json())
-movie.use(cors())
+app.use(express.json())
+app.use(cors())
 
-movie.get("/",(req,res)=>{
-    res.send("Welcome here are some movie names for you")
+app.get("/",(req,res)=>{
+    res.send("Welcome")
 })
 
-movie.use('/api/movie',MovieRoute)
+app.use('/api/movie',MovieRoute)
+app.use('/api/serial',SerialRoute)
 
-movie.listen(process.env.PORT || 5000)
+app.listen(process.env.PORT || 5000)
 
 async function mongoConnection() {
     try {
