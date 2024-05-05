@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+
 const serialSchema = new mongoose.Schema({
     name:{
         type : String,

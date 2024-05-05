@@ -1,29 +1,35 @@
 require("dotenv").config()
-const express = require('express')
+const express = require("express")
 const mongoose = require('mongoose')
-const cors = require('cors')
-const ProductRoute = require('./route/productRoute')
+const cors = require("cors")
+const MovieRoute = require("./route/movieRoute")
+const SerialRoute = require("./route/serialRoute")
+const LaptopRoute = require("./route/laptopRoute")
+const VegetableRoute = require('./route/vegetableRoute')
 
 const app = express()
 
 app.use(express.json())
 app.use(cors())
 
-app.get('/',(req,res)=>{
-    res.send("HELLO")
+app.get("/",(req,res)=>{
+    res.send("Welcome")
 })
 
-app.use('/api/products1',ProductRoute)
+app.use('/api/movie',MovieRoute)
+app.use('/api/serial',SerialRoute)
+app.use('/api/laptop',LaptopRoute)
+app.use('/api/vegetable',VegetableRoute)
 
 app.listen(process.env.PORT || 5000)
 
 async function mongoConnection() {
-   try {
-    const res = await mongoose.connect(process.env.DB)
-    const data = await res.default
-    console.log(data.STATES.connected);
-   } catch (error) {
-    console.log("Error",error.message);
-   }
-} 
+    try {
+        const res = await mongoose.connect(process.env.DB)
+        const data = await res.default
+        console.log(data.STATES.connected);
+    } catch (error) {
+        console.log("Error",error.message);
+    }
+}
 mongoConnection()
